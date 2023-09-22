@@ -1,3 +1,11 @@
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js').then(() => {
+    console.log('Service Worker registered successfully.');
+  }).catch((error) => {
+    console.log('Service Worker registration failed:', error);
+  });
+}
+
 document.getElementById('message-form').addEventListener('submit', async (event) => {
   event.preventDefault();
 
