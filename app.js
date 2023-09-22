@@ -7,17 +7,16 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Handle form submission and send messages to the Discord webhook
-document.getElementById('message-form').addEventListener('submit', (event) => {
-  event.preventDefault();
-
+// Handle input fields and send messages to the Discord webhook
+document.getElementById('start-button').addEventListener('click', () => {
   const messageInput = document.getElementById('message');
   const message = messageInput.value;
 
-  const interval = 100; // 0.1 seconds in milliseconds
+  const intervalInput = document.getElementById('interval');
+  const interval = parseInt(intervalInput.value, 10) * 1000; // Convert to milliseconds
 
   // Replace this with your Discord webhook URL
-  const webhookUrl = 'https://discord.com/api/webhooks/...';
+  const webhookUrl = 'https://discord.com/api/webhooks/1154673897782902854/sUI5AAm44Pk3-GzEv97t_fXcD6IRj2-JJ72Mj3Q5yzNXpoGjiLfm14fje1xJPG57mLC6';
 
   const sendMessage = async () => {
     try {
