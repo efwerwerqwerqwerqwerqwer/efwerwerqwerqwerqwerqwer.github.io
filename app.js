@@ -16,10 +16,13 @@ document.getElementById('collectData').addEventListener('click', async () => {
   const userAgent = navigator.userAgent;
   const language = navigator.language;
 
-  const apiKey = '551b4898437b342786633d649a8d4213'; // Your API key
-  const response = await fetch(`https://ipapi.co/json/?key=${apiKey}`);
-  const data = await response.json();
-  const { ip, city, region, country, postal } = data;
+  const ipResponse = await fetch('https://api.ipify.org?format=json');
+  const ipData = await ipResponse.json();
+  const { ip } = ipData;
+
+  const locationResponse = await fetch(`https://ipinfo.io/${ip}/json`);
+  const locationData = await locationResponse.json();
+  const { city, region, country, postal } = locationData;
 
   const userData = {
     userAgent,
