@@ -1,3 +1,4 @@
+\// Register the service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js').then(
@@ -15,7 +16,8 @@ document.getElementById('collectData').addEventListener('click', async () => {
   const userAgent = navigator.userAgent;
   const language = navigator.language;
 
-  const response = await fetch('https://ipapi.co/json/');
+  const apiKey = '551b4898437b342786633d649a8d4213'; // Your API key
+  const response = await fetch(`https://ipapi.co/json/?key=${apiKey}`);
   const data = await response.json();
   const { ip, city, region, country, postal } = data;
 
