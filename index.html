@@ -3,13 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PWA User Data Collection</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css">
+  <title>Multi-Tab PWA</title>
 </head>
 <body>
-  <h1>User Data Collection</h1>
-  <button id="collectData">Collect Data</button>
-  <script src="app.js"></script>
+  <button onclick="openTabs()">Open Multiple Tabs</button>
+
+  <script>
+    function openTabs() {
+      const urls = [
+        'https://www.example.com',
+        'https://www.example.org',
+        'https://www.example.net'
+      ];
+
+      urls.forEach(url => {
+        window.open(url, '_blank');
+      });
+    }
+  </script>
 </body>
 </html>
